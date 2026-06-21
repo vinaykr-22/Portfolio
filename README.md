@@ -16,11 +16,6 @@ npm run build
 npm run preview
 ```
 
-## Deploy to Vercel
-
-1. Push this repository to GitHub
-2. Import the project at vercel.com
-3. Vercel auto-detects Vite
 
 ## Commands
 
