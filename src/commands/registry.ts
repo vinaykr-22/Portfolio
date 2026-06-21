@@ -216,7 +216,7 @@ __      __ _
   {
     name: 'matrix',
     description: 'Enter the matrix',
-    execute: (args, context) => {
+    execute: (_args, context) => {
       context.appendLines([line('success', 'Wake up, Neo...')])
       setTimeout(() => context.appendLines([line('success', 'The Matrix has you...')]), 1500)
       setTimeout(() => context.appendLines([line('success', 'Follow the white rabbit.')]), 3000)
