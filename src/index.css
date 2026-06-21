@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@theme {
+  --color-terminal-bg: #0d1117;
+  --color-terminal-surface: #161b22;
+  --color-terminal-border: #30363d;
+  --color-terminal-text: #c9d1d9;
+  --color-terminal-blue: #58a6ff;
+  --color-terminal-green: #7ee787;
+  --color-terminal-amber: #ffa657;
+  --color-terminal-error: #f85149;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--color-terminal-bg);
+  color: var(--color-terminal-text);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fade-in 150ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink,
+  .fade-in {
+    animation: none;
+  }
+}
+
+.scanline::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0.12) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.03;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanline::after {
+    display: none;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-terminal-blue);
+  outline-offset: 2px;
+}
+
+.simple-view {
+  font-family: var(--font-sans);
+}
+
+.simple-view h1,
+.simple-view h2,
+.simple-view h3 {
+  font-family: var(--font-mono);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-terminal-bg);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-terminal-border);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-terminal-text);
+}
