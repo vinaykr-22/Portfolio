@@ -102,7 +102,7 @@ function App() {
       >
         <TerminalWindow onClose={() => setIsTerminalOpen(false)}>
           {!bootComplete ? (
-            <BootSequence onComplete={() => setBootComplete(true)} />
+            <BootSequence onComplete={() => setBootComplete(true)} isReady={isTerminalOpen} />
           ) : (
             <>
               <TerminalOutput lines={lines} />
@@ -112,6 +112,7 @@ function App() {
                 onChange={setInput}
                 onSubmit={handleSubmit}
                 onHistory={handleHistory}
+                isOpen={isTerminalOpen}
               />
             </>
           )}

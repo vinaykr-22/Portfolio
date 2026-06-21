@@ -3,14 +3,17 @@ import { BOOT_LINES } from '../../data/profile'
 
 interface BootSequenceProps {
   onComplete: () => void
+  isReady?: boolean
 }
 
-export function BootSequence({ onComplete }: BootSequenceProps) {
+export function BootSequence({ onComplete, isReady = true }: BootSequenceProps) {
   const [visibleLines, setVisibleLines] = useState<string[]>([])
   const [done, setDone] = useState(false)
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   useEffect(() => {
+    if (!isReady) return
+
     if (reducedMotion) {
       setVisibleLines(BOOT_LINES)
       setDone(true)
@@ -47,7 +50,7 @@ export function BootSequence({ onComplete }: BootSequenceProps) {
     }, 18)
 
     return () => window.clearInterval(interval)
-  }, [onComplete, reducedMotion])
+  }, [onComplete, reducedMotion, isReady])
 
   const skip = () => {
     if (!done) {

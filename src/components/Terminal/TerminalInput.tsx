@@ -7,6 +7,7 @@ interface TerminalInputProps {
   onSubmit: (value: string) => void
   onHistory: (direction: 'up' | 'down') => void
   disabled?: boolean
+  isOpen?: boolean
 }
 
 export function TerminalInput({
@@ -15,14 +16,16 @@ export function TerminalInput({
   onSubmit,
   onHistory,
   disabled = false,
+  isOpen = true,
 }: TerminalInputProps) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    if (!disabled) {
-      inputRef.current?.focus()
+    if (!disabled && isOpen) {
+      // Small delay to allow the drawer transition to finish before focusing
+      setTimeout(() => inputRef.current?.focus(), 300)
     }
-  }, [disabled])
+  }, [disabled, isOpen])
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
