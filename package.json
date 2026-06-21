@@ -12,6 +12,7 @@
     "@emailjs/browser": "^4.4.1",
     "@fontsource/inter": "^5.2.5",
     "@fontsource/jetbrains-mono": "^5.2.5",
+    "@vercel/analytics": "^2.0.1",
     "lucide-react": "^0.511.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
